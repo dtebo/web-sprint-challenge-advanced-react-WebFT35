@@ -16,6 +16,24 @@ test("form header renders", () => {
 test("form shows success message on submit with form details", async () => {
     render(<CheckoutForm />);
 
+    const firstName = await screen.getByLabelText(/first name/i);
+    fireEvent.change(firstName, { target: { name: "firstName", value: "Darren" }});
+
+    const lastName = screen.getByLabelText(/last name/i);
+    fireEvent.change(lastName, { target: { name: "lastName", value: "Tebo" }});
+
+    const address = screen.getByLabelText(/address/i);
+    fireEvent.change(address, { target: { name: "address", value: "101 Anywhere St" }});
+
+    const city = screen.getByLabelText(/city/i);
+    fireEvent.change(city, { target: { name: "city", value: "Erie" }});
+
+    const state = screen.getByLabelText(/state/i);
+    fireEvent.change(state, { target: { name: "state", value: "PA" }});
+
+    const zip = screen.getByLabelText(/zip/i);
+    fireEvent.change(zip, { target: { name: "zip", value: "16451" }});
+    
     const button = screen.getByRole("button", {name: /checkout/i});
 
     fireEvent.click(button);
